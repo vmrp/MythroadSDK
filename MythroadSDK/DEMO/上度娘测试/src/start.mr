@@ -1,0 +1,14 @@
+def GotoBaidu ()
+     Address="http://wap.baidu.com"
+     ConnectWAP(Address)
+end
+
+GotoBaidu ()
+
+
+
+
+
+
+
+

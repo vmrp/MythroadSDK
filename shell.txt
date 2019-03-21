@@ -1,0 +1,4 @@
+_com(305, 0)
+_nes3ShP7SwK0 = 370
+local f = loadfile("start.mr")
+f()

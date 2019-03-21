@@ -1,0 +1,350 @@
+____子程序_0(s)
+   print(s)
+____结束 
+ 
+____子程序_1()
+   tn = _com(1, 0)
+   print("dbgtime tn ," .. tn)
+____结束 
+ 
+____子程序_2()
+   local st, ret = _platEx(1204, "Y")
+   dbglog("getCurPath ret: " .. ret)
+   if ret == 0 then
+      return st
+   else
+      return nil
+   end
+____结束 
+ 
+____子程序_3()
+   if nesPathSv then
+      local st, ret = _platEx(1204, nesPathSv)
+      dbglog("ret: " .. ret .. ", nesPathSv: " .. nesPathSv)
+      return ret
+   end
+____结束 
+ 
+____子程序_4()
+   dbglog("suspend in !")
+   if ongame then
+      _platEx(2075, "")
+      _strCom(801, {1, 1}, 10)
+   else
+____结束 
+ 
+____子程序_5()
+   dbglog("resume in !")
+   if ongame then
+      dbglog("resume in 2!")
+      dbglog("resume in 3!")
+      --[[ DECOMPILER ERROR 312: unhandled construct in 'if' ]]
+____结束 
+ 
+____子程序_6()
+   if nesVol ~= 0 and (not appHs.sound or appHs.sound ~= nesVol) then
+      appHs.sound = nesVol
+   elseif nesVol == 0 and appHs.sound then
+      appHs.sound = nil
+   end
+   SaveTable({}, appHs, "app.cfg")
+   _platEx(2075, "")
+____结束 
+ 
+____子程序_7(init_c)
+   dbglog("c_load() in")
+   if code_buf_loaded then
+      if init_c then
+         ret = _strCom(800, code_buf, 1)
+         ret = _strCom(800, code_buf, 0)
+         return ret
+      end
+      return 0
+   end
+   local ret = -1
+   code_buf = _strCom(601, "cfunction.ext")
+   if code_buf then
+      ret = _strCom(800, code_buf, 0)
+   end
+   code_buf_loaded = ret ~= 0
+   return ret
+____结束 
+ 
+____子程序_8()
+____结束 
+ 
+____子程序_9()
+   dbglog("time1 = " .. _com(1, 0))
+   dbglog("time2 = " .. _com(1, 0))
+   if _com(102, 0) < 10240 then
+      _gc()
+      nes_err = true
+   end
+   if nes_err then
+      ugui.TextEx(txt[5], txt[20], 2, "", txt[2], nil, function()
+      WinCloseN(2)
+   end)
+      win.refresh()
+      _strCom(801, {1, 1}, 4)
+      ongame = nil
+      return 
+   end
+   dbglog("time3= " .. _com(1, 0))
+   dbglog("g_all_time=" .. _com(1, 0) - g_all_time)
+   g_all_time = _com(1, 0)
+   cyc_time = 70
+   TimerStart(0, cyc_time, "spriteTest")
+   if cyc > 100 then
+      local time = _com(1, 0)
+      _gc()
+      dbglog("cyc_gc = " .. _com(1, 0) - time)
+      cyc = 0
+   end
+   cyc = cyc + 1
+   dbglog("time4= " .. _com(1, 0))
+   _strCom(801, {s_buf, s_len}, 1)
+   dbglog("time5= " .. _com(1, 0))
+   _strCom(801, {s_buf, scr_p}, 11)
+   dbglog("time6= " .. _com(1, 0))
+   cyc_time = _com(1, 0) - g_all_time
+____结束 
+ 
+____子程序_10(n)
+   if _t(n) ~= "num" then
+      n = 2
+   end
+   _strCom(801, {1, 1}, 4)
+   ongame = nil
+   WinCloseN(n)
+____结束 
+ 
+____子程序_11()
+   _platEx(1204, nes_path)
+   local s, ret = _strCom(801, {1, 1}, 6)
+   _platEx(1204, "Z:\\")
+   if ret == 0 then
+      ugui.TextEx(txt[5], txt[7], 2, "", txt[2])
+   else
+      ugui.TextEx(txt[5], txt[8], 2, "", txt[2])
+   end
+____结束 
+ 
+____子程序_12()
+   _platEx(1204, nes_path)
+   local s, ret = _strCom(801, {1, 1}, 7)
+   _platEx(1204, "Z:\\")
+   if ret == 0 then
+      nes_err = nil
+      ugui.TextEx(txt[5], txt[9], 2, "", txt[2], nil, function()
+         ongame = 1
+         WinCloseN(2)
+         _clearScr(0, 0, 0)
+         DispUpdate()
+         TimerStart(0, 100, "spriteTest")
+      end)
+   else
+      nes_err = 1
+      ugui.TextEx(txt[5], txt[10], 2, "", txt[2], nil, function()
+         win.close()
+         op_exit(2)
+         ongame = nil
+      end)
+   end
+____结束 
+ 
+____子程序_13(item, menu)
+   local maxVol = _plat(1301, 0)
+   if maxVol < 1000 then
+      maxVol = 5
+   else
+      maxVol = maxVol - 1000
+   end
+   if nesVol < maxVol then
+      nesVol = nesVol + 1
+   else
+      nesVol = 0
+   end
+   item[1] = txt[11] .. nesVol .. txt[12]
+   menu:update()
+____结束 
+ 
+____子程序_14(eCode, x, y)
+   if eCode == 1 and x == 18 then
+      local soundVol = txt[11] .. nesVol .. txt[12]
+      local exit_menu = {txt[14], {{txt[15], op_exit}, {txt[16], op_save}, {txt[17], op_load}, {txt[18], nesDel}, {soundVol, op_volSet}}}
+      _gc()
+      TimerStop(0)
+      _platEx(2075, "")
+      _strCom(801, {1, 1}, 10)
+      local m = ugui.Menu(exit_menu)
+      ongame = 2
+      m.cancelFunc = function()
+         _strCom(801, {nesVol + 1, 1}, 9)
+         _plat(1302, nesVol)
+         ongame = 1
+         win.close()
+         _clearScr(0, 0, 0)
+         DispUpdate()
+         TimerStart(0, 100, "spriteTest")
+      end
+      win.refresh()
+   end
+____结束 
+ 
+____子程序_15()
+   local m = nes_cfg.k
+   local s = string.pack("BBBBBBBBBB", m[1], m[2], m[3], m[4], m[5], m[6], m[7], m[8], m[9], m[10])
+   _strCom(801, s, 5)
+   _strCom(801, {nesVol + 1, 1}, 9)
+____结束 
+ 
+____子程序_18(name)
+   dbglog("NesLoad")
+   _platEx(1204, nes_path)
+   local v, ret = _strCom(801, name, 0)
+   _platEx(1204, "Z:\\")
+   dbglog("ret" .. ret)
+   return ret
+____结束 
+ 
+____子程序_19(name)
+   curName = name
+   dbglog(name)
+   if c_load(true) == 0 then
+      nes_app_cfg()
+      _gc()
+      dbglog("top before load" .. _com(101, 0))
+      dbglog("mem before load" .. _com(102, 0))
+      local ret1, ret2 = _pCall(NesLoad, name)
+      dbglog("top after load" .. _com(101, 0))
+      dbglog("mem before load" .. _com(102, 0))
+      if ret1 == true and ret2 == 0 then
+         _platEx(1225, string.pack("i", 0))
+         nes_err = nil
+         if nesVol > 0 then
+            _platEx(2015, "")
+            _plat(1302, nesVol)
+         end
+         ugui.ExWin(DUp, de_nes)
+         _clearScr(0, 0, 0)
+         DispUpdate()
+         _strCom(801, {s_buf, s_len}, 12)
+         win.refresh()
+         ongame = 1
+         rom_name = name
+         COIN_cost(1)
+         TimerStart(0, 100, "spriteTest")
+      else
+         _gc()
+         ugui.TextEx(txt[5], txt[21], 1, txt[3], txt[2], nesDelDo)
+      end
+   else
+      ugui.TextEx(txt[5], txt[22], 2, "", txt[2])
+   end
+end
+____结束 
+ 
+____子程序_20(name)
+   local prefix = string.sub(name, 1, -5)
+   local saveName = prefix .. ".nes"
+   local retName = nil
+   local fileName = prefix .. ".zpk"
+   local old = (_loadPack(fileName))
+   local find = nil
+   local i = 1
+   repeat
+      find = sys.getFileInfo(saveName)
+      if find ~= 8 then
+         saveName = prefix .. i .. ".nes"
+         i = i + 1
+      end
+   until find == 8
+   local nesData = _strCom(601, saveName)
+   if nesData then
+      dbglog("get nes data OK !!!!")
+      local f = file.open(saveName, 8 + 2)
+      if f then
+         local ret = f:write(nesData)
+         f:close()
+         if ret then
+            retName = saveName
+            sys.rm(fileName)
+         end
+      end
+   end
+   dbglog("get nes data FAILED !!!!")
+   _loadPack(old)
+   return retName
+____结束 
+ 
+____子程序_21(item)
+   local name = item[1]
+   if item[3] == 1 then
+      name = nesExpack(name)
+      if not name then
+         ugui.TextEx(txt[5], txt[22], 2, "", txt[2])
+         return 
+      else
+         item[1] = name
+         item[3] = 0
+      end
+      NesFuncReal(name)
+____结束 
+ 
+____子程序_22()
+   ugui.TextEx(txt[5], txt[24], 1, txt[3], txt[2], nesDelDo)
+____结束 
+ 
+____子程序_23()
+   local text = nil
+   dbglog(curName)
+   _platEx(1204, nes_path)
+   local ret = sys.rm(curName)
+   _platEx(1204, "Z:\\")
+   win.close()
+   if not ret then
+      text = txt[25]
+   else
+      text = txt[26]
+   end
+   ugui.TextEx(txt[5], text, 0, txt[3], "", nesListRebuild)
+____结束 
+ 
+____子程序_24()
+   op_exit(1)
+   win.closeAll(false)
+   _gc()
+   DoReadLocalGame()
+____结束 
+ 
+____子程序_25()
+   if ugui.Explore() then
+      return 1
+   else
+      return 0
+   end
+____结束 
+ 
+____子程序_26()
+   if ReadLocalGame() > 0 then
+      do break end
+   end
+   ugui.TextEx(txt[5], txt[32], 2, "", txt[2])
+   win.refresh()
+____结束 
+ 
+____子程序_27(coins)
+   cmOnce = cmOnce
+   local st, ret = _platEx(1204, "A:\\mythroad")
+   if ret == 0 then
+      local count = LoadTable({}, "accu.dat")
+      if count and count.cn and count.cn > 0 then
+         local date = sys.datetime()
+         if not count.mn or count.mn ~= date.mon then
+            count.mn = date.mon
+            count.cs = coins
+            count.cb = 0
+         elseif not count.cb then
+            --[[ DECOMPILER ERROR 226: Attempted to build a boolean expression without a pending context ]]
+____结束 
+ 

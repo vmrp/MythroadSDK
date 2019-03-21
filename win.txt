@@ -1,0 +1,370 @@
+____子程序_0(s)
+   print(s)
+____结束 
+ 
+____子程序_1()
+   tn = _com(1, 0)
+   print("dbgtime tn ," .. tn)
+____结束 
+ 
+____子程序_2()
+   dbglog("DoNothing()")
+____结束 
+ 
+____子程序_3(t, param1, param2)
+   if t == 8 then
+      nesExit()
+   else
+      winEvent(t, param1, param2)
+   end
+____结束 
+ 
+____子程序_4(param, event)
+   dbglog("win.new in!!")
+   local tmp = {}
+   if param then
+      dbglog("param in!!type: " .. type(param))
+      tmp.refresh = DoNothing
+      if type(param) == "function" then
+         dbglog("function")
+         tmp.refresh = param
+      else
+         if type(param) == "table" then
+            dbglog("table")
+            tmp.window = param
+         end
+      end
+      if event then
+         dbglog("have event")
+         tmp.dealevent = event
+         winEvent = event
+      end
+      table.insert(winStack, tmp)
+      win.top = tmp
+      dbglog("win.new out")
+____结束 
+ 
+____子程序_5(noExit)
+   dbglog(table.getn(winStack))
+   local destroyWin = table.remove(winStack)
+   if destroyWin.window then
+      destroyWin.window:close()
+   end
+   local currentWin = winStack[table.getn(winStack)]
+   win.top = currentWin
+   if currentWin then
+      if currentWin.refresh then
+         currentWin.refresh()
+      end
+      upper = currentWin.dealevent
+      dbglog("1 mem top =" .. TestCom(101, 0) .. ",min =" .. TestCom(100, 0))
+      _gc()
+      dbglog("2 mem top =" .. TestCom(101, 0) .. ",min =" .. TestCom(100, 0))
+   elseif noExit then
+      do break end
+   end
+   dbglog("winclosed -----exit ()" .. _com(101, 0))
+   nesExit()
+   Exit()
+____结束 
+ 
+____子程序_6()
+   dbglog("win.refresh()")
+   if not win.disRef and win.top then
+      dbglog("##########refresh in###########")
+      if win.top.refresh then
+         win.top.refresh()
+      else
+         if win.top.window and win.top.window.refresh then
+            win.top.window.refresh()
+         end
+      end
+   end
+   dbglog("1 mem top =" .. TestCom(101, 0) .. ",min =" .. TestCom(100, 0))
+   _gc()
+   dbglog("2 mem top =" .. TestCom(101, 0) .. ",min =" .. TestCom(100, 0))
+____结束 
+ 
+____子程序_7(n)
+   win.disRef = true
+   for i = 1, n do
+      win.close()
+   end
+   win.disRef = nil
+____结束 
+ 
+____子程序_9()
+   DispUpEx(0, 0, SCR_W, SCR_H)
+____结束 
+ 
+____子程序_10(self, item, index)
+   if index then
+      table.insert(self.items, index, item)
+   else
+      table.insert(self.items, item)
+   end
+   self.count = self.count + 1
+____结束 
+ 
+____子程序_11(self)
+   dbglog("menuShowFunc in, num: " .. self.count)
+   self.wnd = gui.m_create(charToUnicode(self.title), self.count)
+   for index, item in self.items do
+      dbglog("m_setitem: " .. index)
+      gui.m_setitem(self.wnd, charToUnicode(item[1]), index - 1)
+   end
+   gui.m_show(self.wnd)
+   dbglog("menuShowFunc out")
+____结束 
+ 
+____子程序_12(self)
+   dbglog("menuupdateFunc()")
+   for index, item in self.items do
+      gui.m_setitem(self.wnd, charToUnicode(item[1]), index - 1)
+   end
+   gui.m_update(self.wnd)
+   dbglog("menuupdateFunc()out")
+____结束 
+ 
+____子程序_13(self)
+   dbglog("menuClose()")
+   if self.wnd then
+      gui.m_release(self.wnd)
+   end
+   dbglog("menuClose()out")
+____结束 
+ 
+____子程序_14(menu, kind, param1, param2)
+   dbglog("kind=" .. kind .. ",param1=" .. param1)
+   if kind == 4 then
+      local item = menu.items[param1 + 1]
+      local d = item[2]
+      dbglog("type(d): " .. type(d))
+      if type(d) == "function" then
+         d(item, menu)
+      else
+         if type(d) == "table" then
+            dbglog("create new menu " .. item[1])
+            ugui.Menu(item)
+         elseif d == nil then
+            NesFunc(item)
+         elseif kind == 5 then
+            if type(menu.cancelFunc) == "function" then
+               menu.cancelFunc(menu)
+            else
+               win.close()
+            end
+         end
+      end
+   end
+____结束 
+ 
+____子程序_15(self)
+   return function(type, param1, param2)
+      _menuEvent(self, type, param1, param2)
+   end
+____结束 
+ 
+____子程序_16(title)
+   dbglog("ugui.MenuEx in")
+   local newMenu = {}
+   newMenu.items = {}
+   newMenu.count = 0
+   if not title then
+      newMenu.title = txt[6]
+   end
+   newMenu.add = menuAddFunc
+   newMenu.show = menuShowFunc
+   newMenu.update = menuupdateFunc
+   newMenu.close = menuClose
+   newMenu.cancelFunc = win.close
+   win.new(newMenu, menuEvent(newMenu))
+   dbglog("ugui.MenuEx out")
+   return newMenu
+____结束 
+ 
+____子程序_17(items)
+   local menu = ugui.MenuEx(items[1])
+   for index, data in items[2] do
+      menu:add(data)
+   end
+   if menu.count == 0 then
+      dbglog("menu item number == 0 !!!")
+      menu.wnd = nil
+      menu = nil
+      win.close()
+   else
+      menu:show()
+   end
+   return menu
+____结束 
+ 
+____子程序_18(self)
+   if self.wnd then
+      if self.isText then
+         gui.t_release(self.wnd)
+      else
+         gui.d_release(self.wnd)
+      end
+   end
+____结束 
+ 
+____子程序_19(dialog, type, param1, param2)
+   dbglog("_dialogEvent:" .. type .. ", pa1:" .. param1)
+   if type == 6 then
+      if param1 == 0 and dialog.kind ~= 2 then
+         dialog.func1(dialog)
+      elseif param1 == 1 and dialog.kind ~= 0 then
+         dialog.func2(dialog)
+      end
+   end
+____结束 
+ 
+____子程序_20(self)
+   return function(type, param1, param2)
+      _dialogEvent(self, type, param1, param2)
+   end
+____结束 
+ 
+____子程序_21(self, title, text)
+   if not title then
+      self.title = self.title
+   end
+   if not text then
+      self.text = self.text
+   end
+   if self.wnd then
+      if self.isText then
+         gui.t_update(self.wnd, charToUnicode(self.title), charToUnicode(self.text))
+      else
+         gui.d_update(self.wnd, charToUnicode(self.title), charToUnicode(self.text))
+      end
+   end
+____结束 
+ 
+____子程序_22(title, text, kind, lCap, rCap, func1, func2, isText)
+   dbglog("dialog. come in!!")
+   local newDialog = {}
+   if not title then
+      newDialog.title = txt[5]
+   end
+   if not text then
+      newDialog.text = ""
+   end
+   if not kind then
+      newDialog.kind = 0
+   end
+   if newDialog.kind == 2 or newDialog.kind == 100 then
+      newDialog.func1 = DoNothing
+   elseif not func1 then
+      newDialog.func1 = win.close
+   end
+   if newDialog.kind == 0 or newDialog.kind == 100 then
+      newDialog.func2 = DoNothing
+   elseif not func2 then
+      newDialog.func2 = win.close
+   end
+   newDialog.isText = not isText
+   newDialog.wnd = gui.t_create(charToUnicode(newDialog.title), charToUnicode(newDialog.text), newDialog.kind)
+   do break end
+   newDialog.wnd = gui.d_create(charToUnicode(newDialog.title), charToUnicode(newDialog.text), newDialog.kind)
+   newDialog.close = dialogClose
+   newDialog.update = dialogupdate
+   win.new(newDialog, dialogEvent(newDialog))
+   dbglog("dialog. created return!!")
+   return newDialog
+____结束 
+ 
+____子程序_23(self)
+   _platEx(1406, "")
+____结束 
+ 
+____子程序_24(self)
+____结束 
+ 
+____子程序_25(s)
+   local path = _platEx(1220, "")
+   local path_l = string.len(path) + 5
+   local ret = string.sub(s, path_l)
+   return ret
+____结束 
+ 
+____子程序_26(kind, param1, param2)
+   if kind == 10 then
+      if param1 == 0 then
+         local s, ret = _platEx(1405, "")
+         if ret == 0 then
+            local name = nil
+            name, nes_path = nes_relative(s), s
+            if string.lower(string.sub(name, -3)) == "zpk" then
+               _platEx(1204, nes_path)
+               name = nesExpack(name)
+               _platEx(1204, "Z:\\")
+               if not name then
+                  ugui.TextEx(txt[5], txt[22], 2, "", txt[2])
+                  return 
+               end
+            end
+            NesFuncReal(name)
+         else
+            NesFuncReal(" ")
+         end
+      elseif param1 == 1 then
+         win.close()
+      end
+   end
+____结束 
+ 
+____子程序_27()
+   local newDialog = {}
+   _platEx(1401, "")
+   _platEx(1402, string.pack("I", 40))
+   _platEx(1402, string.pack("I", 42))
+   local s, ret = _platEx(1404, string.pack("I", 4))
+   if ret == 0 then
+      newDialog.close = explClose
+      newDialog.update = explUpdate
+      win.new(newDialog, de_expl)
+      return newDialog
+   else
+      return 
+   end
+____结束 
+ 
+____子程序_28(self)
+   dbglog("ExWinClose()")
+   if self.wnd then
+      gui.w_release(self.wnd)
+   end
+   dbglog("ExWinClose() out")
+____结束 
+ 
+____子程序_29(showFunc, eventFunc)
+   local newExwin = {}
+   newExwin.show = showFunc
+   newExwin.close = ExWinClose
+   newExwin.wnd = gui.w_create()
+   win.new(newExwin, eventFunc)
+   return newExwin
+____结束 
+ 
+____子程序_30(str)
+   if string.byte(str, 1) == 27 then
+      return string.sub(str, 2)
+   else
+      return c2u(str)
+   end
+____结束 
+ 
+____子程序_31()
+   local wtw, wth = _textWidth(txt[28])
+   if wth == nil then
+      wth = 20
+   end
+   sysinfo = GetSysInfo()
+   SCR_W, SCR_H = sysinfo.ScreenW, sysinfo.ScreenH
+   _effSetCon((SCR_W - wtw - 20) / 2, (SCR_H - wth - 8) / 2, wtw + 20, wth + 8, 64, 64, 64)
+   DrawText(txt[28], (SCR_W - wtw) / 2, (SCR_H - wth) / 2, 0, 255, 255)
+   DispUpdate()
+____结束 
+ 

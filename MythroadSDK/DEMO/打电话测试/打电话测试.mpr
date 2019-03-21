@@ -1,0 +1,18 @@
+[information]
+projectname=nhshj3.mpr
+filename=nhshj3.mrp
+appname=打电话测试
+appid=1668
+version=0001
+visible=1
+cpu=3
+vendor=E界开发者
+output=nhshj3.mrp
+description=天枫
+include= src\
+config=mtk
+[config_mtk]
+bmp_mode=normal
+output=bin\打电话测试.mrp
+[files]
+file01 = src\start.mr

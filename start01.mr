@@ -1,0 +1,48 @@
+//--Exit() == mrc_exit()
+//--居然不识别 lua注释符 -- 、、、 用 //-- 
+
+
+//-- 产生按键、触屏事件时被调用 等同于 mrc_event
+def dealevent(code, p0, p1, p2)
+	print("dealevent 被调用")
+	
+	str = string.format("code = %d, p0 = %d, p1 = %d", code, p0, p1)
+	print(str)
+	
+	//--if code == 1 and p0 == 18 then
+	if p0 == 18 then 		//--右软键
+		Exit()
+	end
+		
+	return 1
+end
+
+
+//-- 外部事件打断时被调用 等同于 mrc_pause
+def suspend()
+	print("suspend 被调用") 
+	return 1
+end
+
+//-- 恢复时被调用 等同于 mrc_pause
+def resume()
+	print("resume 被调用")
+	return 1
+end
+
+// --貌似没有入口！
+def init()
+	print("init 被调用")
+	return 1
+end
+
+def helloworld()
+	print("helloworld 被调用")
+	//-- 下面的语句貌似没效果
+	ClearScreen(255,0,255)
+	_drawRect(0, 0, 240, 25, 29, 107, 139)
+	_drawLine(0, 26, 240, 26, 0, 0, 0)
+	DrawText("Hello World", 0, 30, 230, 230, 230)
+end
+
+helloworld()
