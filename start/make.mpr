@@ -1,0 +1,19 @@
+[information]
+projectname=start.mpr
+filename=start.mrp
+appname=start
+appid=1000
+version=1000
+visible=1
+cpu=3
+vendor=start
+description=start
+config=mtk
+
+[config_mtk]
+bmp_mode=normal
+output=start.mrp
+
+[files]
+file01 = start.mr(name=start.mr)
+file02 = cfunction(name=cfunction.ext)
