@@ -76,12 +76,16 @@ _drawText("hello, world",0,0,255,255,0)//貌似只有X,Y,R,G,B参数
 DrawText("20201106",50,140,111,222,0)
 _dispUp(0,0,240,320)
 
-_com(400, 3000)
+_com(400, 3000) // sleep(3000)
 
 if _mr_c_load() == 0 then
    _strCom(801, {1, sysinfo.vmver}, 6)
    _gc()
    _strCom(801, "", 0)
+   if _mr_param then
+      local p_mr_param, param_len = string.subV(_mr_param)
+      _strCom(801, string.pack("iii", 5001, p_mr_param, param_len), 1)
+   end
 else
    Exit()
 end

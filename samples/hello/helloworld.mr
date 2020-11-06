@@ -1,11 +1,4 @@
-_clearScr(128,128,0)
-_drawRect(50,50,50,50,  255,255,0)
-EffSetCon(75,75,50,50, 128,128,128)
-_drawText("hello, world",0,0,255,255,0)//貌似只有X,Y,R,G,B参数
-
-
-s = "(C) 默水瓶 20130909"
-
-DrawText(s,50,140,111,222,0)
+_clearScr(0,0,0)
+_drawText("hello, world",0,0,255,255,0)
 _dispUp(0,0,240,320)
 

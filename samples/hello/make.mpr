@@ -6,8 +6,8 @@ appid=1000
 version=1000
 visible=1
 cpu=3
-vendor=默水瓶
-description=这是一个helloworld程序
+vendor=helloworld
+description=helloworld
 config=mtk
 
 [config_mtk]
