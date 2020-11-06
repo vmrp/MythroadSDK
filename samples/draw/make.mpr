@@ -1,0 +1,18 @@
+[information]
+projectname=helloworld.mpr
+filename=xl mrp3.mrp
+appname=mythord语言测试3
+appid=1000
+version=1000
+visible=1
+cpu=3
+vendor=风的影子
+description=测试程序
+config=mtk
+
+[config_mtk]
+bmp_mode=normal
+output=mrp3.mrp
+
+[files]
+file01 = helloworld.mr(name=start.mr)

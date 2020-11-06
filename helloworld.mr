@@ -1,49 +1,0 @@
-
-
-
-
-
-/* 
-by：风的影子
- 
-程序名：画图 
-原作者：默默 
- 
-                                                                               //原理很简单,触屏按下时保存xy,触屏移动时用上次的xy为起点用本次的xy为终点画线,再将本次的xy保存用于下次使用 
-//左功能键清屏，右功能键返回，播号键截图 
-*/
-
-x,y=0,0 
- 
-
-_clearScr(240,240,240)
- 
-_dispUp(0,0,240,320)
-
- 
-def dealevent(type,p0,p1,p2) 
-
-if type==1
-then
-if p0==18
-then
-_exit()
-end
-end
-
-
-if 2==type
-then
-x=p0 y=p1
-end
-
-if 12==type
-then
-_drawLine(x,y,p0,p1,45,175,20);
-_dispUp(0,0,240,320);
-x=p0
-y=p1
-end
-_dispUp(0,0,240,320)
-return 0
-end                                                  

@@ -1,0 +1,55 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: FileSys - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ZJB2009\LOCALS~1\Temp\RSP76.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/FileSys.pdb" /debug /machine:I386 /out:"Debug/FileSys.exe" /pdbtype:sept 
+".\Debug\FileSys.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ZJB2009\LOCALS~1\Temp\RSP76.tmp"
+<h3>Output Window</h3>
+Linking...
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_timerStart
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_winWinEvent
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_drawLine
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_clearScreen
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_getUptime
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_drawText
+FileSys.obj : error LNK2001: unresolved external symbol _MR_STRCAT
+FileSys.obj : error LNK2001: unresolved external symbol _MR_SPRINTF
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_platWinNew
+FileSys.obj : error LNK2001: unresolved external symbol _MR_MEMSET
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_timerCreate
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_winClose
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_winCloseNotShow
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_timerDelete
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_printf
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_refreshScreen
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_platTextNew
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_GetMrpInfo
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_c2u
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_GetCurrentDirectory
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_GetDiskFreeSpaceEx
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_platMenuShow
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_platMenuSetItem
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_platMenuNew
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_bitmapGetInfo
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_winInit
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_winEvent
+FileSys.obj : error LNK2001: unresolved external symbol _mrc_winResume
+LIBCD.lib(crt0.obj) : error LNK2001: unresolved external symbol _main
+Debug/FileSys.exe : fatal error LNK1120: 29 unresolved externals
+Ö´ÐÐ link.exe Ê±³ö´í.
+
+
+
+<h3>Results</h3>
+FileSys.exe - 1 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

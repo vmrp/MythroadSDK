@@ -1,0 +1,4 @@
+---- CreateExitGameWin Matches (3 in 3 files) ----
+GameApp.c (d:\sdk_dev\sdk_版本管理_sky\sdk\samples\14.demogame\code\src):			CreateExitGameWin();
+GamePayment.c (d:\sdk_dev\sdk_版本管理_sky\sdk\samples\14.demogame\code\src):void CreateExitGameWin(uint8 game_status)
+GamePayment.h (d:\sdk_dev\sdk_版本管理_sky\sdk\samples\14.demogame\code\src):void CreateExitGameWin(uint8 game_status);

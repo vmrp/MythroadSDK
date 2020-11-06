@@ -1,0 +1,39 @@
+[information]
+projectname=BMP_Demo.mpr
+filename=BMP_Demo.mrp
+appname=BMP位图
+appid=30004
+version=101
+visible=1
+cpu=3
+vendor=杭州斯凯
+output=BMP_Demo.mrp
+description=杭州斯凯DEMO。演示BMP位图处理。
+config=mtk240,spr240
+
+[config_mtk240]
+define=DEMO_DEBUG
+output=BMP_Demo.mrp
+bmp_mode=normal
+
+[files_mtk240]
+
+[config_spr240]
+define=DEMO_DEBUG
+output=BMP_Demo_SPR.mrp
+bmp_mode=spreadtrum
+
+[files_spr240]
+
+[files]
+file31 = ..\..\modules\mrc_win.c
+file32 = ..\..\modules\mrc_menu.c
+file33 = ..\..\modules\mrc_text.c
+file34 = ..\..\modules\mrc_aux.c
+file37 = bmp_demo.c
+file38 = test.bmp256
+file39 = test.bmp16
+file40 = fullscreen24bit.bmp
+file41 = fullscreen256.bmp256
+file42 = gx_af_enemi_5.gif
+file43 = tree.JPG

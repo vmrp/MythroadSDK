@@ -1,0 +1,38 @@
+[information]
+projectname=white.mpr
+filename=whiteNoAI.mrp
+appname=黑白棋Demo
+appid=30007
+version=101
+visible=1
+cpu=3
+vendor=杭州斯凯
+output=whiteNoAI.mrp
+description=这是一个黑白棋游戏的Demo
+config=mtk240
+
+[config_mtk176]
+define=WHITE_DEBUG,SCREEN176_220
+output=whiteNoAI176.mrp
+bmp_mode=normal
+
+[config_mtk240]
+define=WHITE_DEBUG,SCREEN240_320
+output=whiteNoAI240.mrp
+bmp_mode=normal
+
+[files_mtk176]
+file10 = \176\board.bmp
+
+[files_mtk240]
+file10 = \240\board.bmp
+
+[files]
+file110 = white.c
+file111 = board.c
+file112 = ..\..\modules\mrc_win.c
+file113 = ..\..\modules\mrc_text.c
+file114 = ..\..\modules\mrc_menu.c
+file115 = white_aux.c
+file116 = png_test.png
+

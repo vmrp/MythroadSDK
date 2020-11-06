@@ -1,0 +1,276 @@
+[information]
+projectname=gld.mpr
+filename=gld.mrp
+appname=雷电1944
+appid=1000
+version=1031
+visible=1
+cpu=3
+vendor=杭州斯凯
+output=gld.mrp
+description=飞机游戏的天骄《雷电》系列从天而降，错过经典可是种罪过哦！
+config=mtk240TEST,mtk240ZS12,mtk240ZSCX22,mtk240CQ11,mtk240GS22,mtk240GSZY22,mtk240CY22,mtk240TOM22,mtk240ZYCX22,mtk240ZYMT11,mtk240ZS22,mtk240ZYMT12,mtk240BW12,mtk240GSZS22,spr240ZS12,spr240ZSCX22,spr240CQ11,spr240GS22,spr240GSZY22,spr240CY22,spr240TOM22,spr240ZYCX22,spr240ZYMT11,spr240ZS22,spr240ZYMT12,spr240BW12,spr240GSZS22
+#config=spr240ZS12
+
+[config_mtk240TEST]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_PAYMENT_TEST
+output=TEST_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240ZS12]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHANGSHANGLINGTONG_2RMB
+output=ZS12_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240ZSCX22]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHANGSHANGLINGTONG_2RMB_MMS
+output=ZSCX22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240CQ11]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_XINQINGHUDONG_1RMB
+output=XQ11_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240GS22]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_GUNSHIYIDONG_2RMB
+output=GS22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240GSZY22]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_GUNSHIZHIYUN_2RMB
+output=GSZY22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240CY22]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_CHUANGYIHEXIAN_2RMB
+output=CY22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240TOM22]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_TOM_2RMB
+output=TOM22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240ZYCX22]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHIYUNSHIDAI_2RMB_MMS
+output=ZYCX22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240ZYMT11]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHIYUNSHIDAI_1RMB_MT
+output=ZYMT11_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240ZS22]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHANGSHANGLINGTONG_2RMB_318
+output=ZS22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240ZYMT12]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHIYUNSHIDAI_CMCC10MT_UNICOM20
+output=ZYMT12_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240BW12]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0611,CHANNEL_BEIWEI_CMCC10_UNICOM20
+output=BW12_START_gmhmnz_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_mtk240GSZS22]
+define=mak_plat=MTK,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0611,CHANNEL_GUNSHIZHANGSHANG_2RMB
+output=GSZS22_START_gmhmnz_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=normal
+
+[config_spr240ZS12]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHANGSHANGLINGTONG_2RMB
+output=ZS12_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240ZSCX22]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHANGSHANGLINGTONG_2RMB_MMS
+output=ZSCX22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240CQ11]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_XINQINGHUDONG_1RMB
+output=XQ11_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240GS22]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_GUNSHIYIDONG_2RMB
+output=GS22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240GSZY22]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_GUNSHIZHIYUN_2RMB
+output=GSZY22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240CY22]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_CHUANGYIHEXIAN_2RMB
+output=CY22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240TOM22]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_TOM_2RMB
+output=TOM22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240ZYCX22]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHIYUNSHIDAI_2RMB_MMS
+output=ZYCX22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240ZYMT11]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHIYUNSHIDAI_1RMB_MT
+output=ZYMT11_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240ZS22]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHANGSHANGLINGTONG_2RMB_318
+output=ZS22_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240ZYMT12]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0529,CHANNEL_ZHIYUNSHIDAI_CMCC10MT_UNICOM20
+output=ZYMT12_START_GLD_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240BW12]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0611,CHANNEL_BEIWEI_CMCC10_UNICOM20
+output=BW12_START_gmhmnz_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+[config_spr240GSZS22]
+define=mak_plat=SPR,RAM=500,mak_lcd=240X320,mak_ver=1031,mak_date=0611,CHANNEL_GUNSHIZHANGSHANG_2RMB
+output=GSZS22_START_gmhmnz_($mak_plat)_($RAM)K_($mak_lcd)_FONT_KEY_UP_V($mak_ver)_($mak_date).mrp
+bmp_mode=spreadtrum
+
+
+[files_mtk240TEST]
+
+[files_mtk240ZS12]
+
+[files_mtk240ZSCX22]
+
+[files_mtk240CQ11]
+
+[files_mtk240GS22]
+
+[files_mtk240GSZY22]
+
+[files_mtk240CY22]
+
+[files_mtk240TOM22]
+
+[files_mtk240ZYCX22]
+
+[files_mtk240ZYMT11]
+
+[files_mtk240ZS22]
+
+[files_mtk240ZYMT12]
+
+[files_mtk240BW12]
+
+[files_mtk240GSZS22]
+
+[files_spr240ZS12]
+
+[files_spr240ZSCX22]
+
+[files_spr240CQ11]
+
+[files_spr240GS22]
+
+[files_spr240GSZY22]
+
+[files_spr240CY22]
+
+[files_spr240TOM22]
+
+[files_spr240ZYCX22]
+
+[files_spr240ZYMT11]
+
+[files_spr240ZS22]
+
+[files_spr240ZYMT12]
+
+[files_spr240BW12]
+
+[files_spr240GSZS22]
+
+[files]
+file30 = PNG_TEST.PNG
+file31 = ..\..\modules\mrc_win.c
+file32 = ..\..\modules\mrc_menu.c
+file33 = ..\..\modules\mrc_text.c
+file40 = ..\..\port\mtk_func.c
+file41 = AirForce.c
+file43 = AirForceExt.c
+file42 = MainFrame.c
+file100= PIC240\GX_AF_PLANE_0.bmp                             
+file101= PIC240\GX_AF_PLANE_1.bmp                             
+file102= PIC240\GX_AF_PLANE_2.bmp                             
+file103= PIC240\GX_AF_BOX_0.bmp                               
+file104= PIC240\GX_AF_BOX_1.bmp                               
+file105= PIC240\GX_AF_BOX_2.bmp                               
+file106= PIC240\GX_AF_BOX_3.bmp                               
+file107= PIC240\GX_AF_BOX_4.bmp                               
+file108= PIC240\GX_AF_BOX_5.bmp                               
+file109= PIC240\GX_AF_BOB_0.bmp                               
+file110= PIC240\GX_AF_BOB_1.bmp                               
+file111= PIC240\GX_AF_BOB_2.bmp                               
+file112= PIC240\GX_AF_BOB_3.bmp                               
+file113= PIC240\GX_AF_BOB_4.bmp                               
+file114= PIC240\GX_AF_BG_0_0.bmp                              
+file115= PIC240\GX_AF_BG_0_1.bmp                              
+file116= PIC240\GX_AF_BG_0_2.bmp                              
+file117= PIC240\GX_AF_BG_1_0.bmp                              
+file118= PIC240\GX_AF_BG_1_1.bmp                              
+file119= PIC240\GX_AF_BG_1_2.bmp                              
+file120= PIC240\GX_AF_ENEMI_0.bmp                             
+file121= PIC240\GX_AF_ENEMI_1.bmp                             
+file122= PIC240\GX_AF_ENEMI_2.bmp                             
+file123= PIC240\GX_AF_ENEMI_3.bmp                             
+file124= PIC240\GX_AF_ENEMI_4.bmp                             
+file125= PIC240\GX_AF_FIRE_0.bmp                              
+file126= PIC240\GX_AF_FIRE_1.bmp                              
+file127= PIC240\GX_AF_FIRE_2.bmp                              
+file128= PIC240\GX_AF_FIRE_3.bmp                              
+file129= PIC240\GX_AF_FIRE_4.bmp                              
+file130= PIC240\GX_AF_FIRE_5.bmp                              
+file131= PIC240\GX_AF_FIRE_6.bmp                              
+file132= PIC240\GX_AF_LOGO.bmp                                
+file133= PIC240\GX_AF_UI_1.bmp                                
+file134= PIC240\GX_AF_UI_2.bmp                                
+file135= PIC240\GX_AF_UI_4.bmp                                
+file136= PIC240\GX_AF_UI_3.bmp                                
+file137= PIC240\GX_AF_UI_5.bmp                                
+file138= PIC240\GX_AF_UI_6.bmp                                
+file139= PIC240\GX_AF_UI_7.bmp                                
+file140= PIC240\GX_AF_MAIN.bmp256                                
+file141= PIC240\GX_AF_ENEMI_5.bmp                             
+file142= PIC240\GX_AF_ENEMI_6.bmp                             
+file143= PIC240\GX_AF_GAMEOVER.bmp                            
+file144= PIC240\GX_AF_ENEMI_5_1.bmp                           
+file145= PIC240\GX_AF_ENEMI_5_2.bmp                           
+file146= PIC240\GX_AF_ENEMI_6_.bmp                            
+file147= PIC240\GX_AF_BAOXIAN.bmp                             
+#file148= PIC240\GX_AF_MENU_EN.bmp                             
+file149= PIC240\GX_AF_MENU_CN.bmp                             
+#file150= PIC240\GX_AF_MENU_HK.bmp                             
+file151= PIC240\GX_AF_ENEMI_7.bmp                             
+file152= PIC240\GX_AF_ENEMI_8.bmp                             
+file153= PIC240\GX_AF_ENEMI_9.bmp                             
+file154= PIC240\GX_AF_ENEMI_10.bmp                            
+file155= PIC240\GX_AF_FIRE_7.bmp                              
+file156= PIC240\GX_AF_FIRE_8.bmp                              
+file157= PIC240\GX_AF_FIRE_9.bmp                              
+file158= PIC240\GX_AF_UI_8.bmp                                
+file159= PIC240\GX_AF_UI_9.bmp 
+file200= ShotSound\bomsound.wav
+#file201= ShotSound\background.mid
+#file202= ShotSound\audio.mp3

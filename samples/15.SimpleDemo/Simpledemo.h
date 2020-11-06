@@ -1,0 +1,14 @@
+#ifndef __GAME_DEMO_H__
+#define __GAME_DEMO_H__
+
+
+#define SCREEN_WIDTH 240
+#define SCREEN_HEIGHT 320
+
+typedef enum{
+SOUND_STATUS_STOP,
+SOUND_STATUS_PLAY,
+SOUND_STATUS_PAUSE
+}SOUND_STATUS_E;
+
+#endif

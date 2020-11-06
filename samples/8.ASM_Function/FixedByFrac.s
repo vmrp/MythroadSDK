@@ -1,0 +1,13 @@
+ AREA FIXEDBYFRAC_S, CODE, READONLY
+ 
+ CODE32
+ EXPORT FixedByFrac
+
+FixedByFrac PROC
+	SMULL r2, r3,r0,r1;
+	MOV r0, r2, LSR #16;
+	ORR r0, r0, r3, LSL #16;
+	bx r14
+ ENDP
+ 
+ END

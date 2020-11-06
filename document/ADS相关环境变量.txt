@@ -1,0 +1,12 @@
+ARMCONF
+C:\Program Files\ARM\ADSv1_2\BIN
+ARMDLL
+C:\Program Files\ARM\ADSv1_2\BIN
+ARMHOME
+C:\Program Files\ARM\ADSv1_2
+ARMINC
+C:\Program Files\ARM\ADSv1_2\INCLUDE
+ARMLIB
+C:\Program Files\ARM\ADSv1_2\LIB
+Path
+C:\Program Files\ARM\ADSv1_2\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;C:\Program Files\Common Files\Teleca Shared

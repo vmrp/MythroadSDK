@@ -1,0 +1,2 @@
+..\..\compiler\mrpbuilder.exe BMP_Demo.mpr --with_c_map
+pause

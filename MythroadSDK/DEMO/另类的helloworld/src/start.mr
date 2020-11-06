@@ -1,7 +1,0 @@
-def helloworld()
-       Txt="helloworld"
-     _error(Txt)
-end
-
-helloworld()
-

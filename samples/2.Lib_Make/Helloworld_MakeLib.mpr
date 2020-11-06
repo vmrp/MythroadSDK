@@ -1,0 +1,23 @@
+[information]
+projectname=Helloworld.mpr
+filename=testfilename.lib
+appname=Helloworld
+appid=30002
+version=101
+visible=1
+cpu=3
+vendor=杭州斯凯
+output=test.lib
+description=这是杭州斯凯网络科技有限公司Mythroad平台生成lib的Demo
+output_format=lib
+config=mtklib
+
+[config_mtklib]
+output=Helloworld.lib
+
+[files_mtklib]
+
+[files]
+file30 = Menu_176.c
+file31 = Menu_240.c
+

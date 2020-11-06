@@ -1,0 +1,35 @@
+[information]
+projectname=FixedByFrac.mpr
+filename=FixedByFrac.mrp
+appname=定点乘法
+appid=30008
+version=100
+visible=1
+cpu=3
+vendor=杭州斯凯
+output=FixedByFrac.mrp
+description=演示嵌入汇编实现定点乘法
+config=UseASM
+
+[config_UseC]
+define=__ARM7_C
+output=FixedByFrac_C.mrp
+bmp_mode=normal
+
+[config_UseASM]
+output=FixedByFrac_ASM.mrp
+bmp_mode=normal
+
+[files_UseC]
+file110 = FixedByFrac.s
+
+[files_UseASM]
+file110 = FixedByFrac.s
+
+[files]
+file30 = png_test.png
+file31 = ..\..\modules\mrc_win.c
+file32 = ..\..\modules\mrc_menu.c
+file33 = ..\..\modules\mrc_text.c
+file35 = UseASM.c
+

@@ -1,0 +1,49 @@
+这就是传说中的用mythroad语言开发,够精简的不用安VS2005和ADS1.2两庞然大物了
+但由于我大部分API的参数都不知道,故求各位帮忙找找 (*^__^*)
+
+首先，保证有一个可用的本地连接，也就是得插网线！
+--printAuthStrCheckSum授权
+第一次授权码32替换第一组, 偏移80207
+第二次授权码30替换最后组, 偏移114320
+
+	20090611 15:23 中国标准时间
+
+在mrpbuilder目录下运行cmd.
+--printAuthStrCheckSum授权
+第一次授权码32替换第一组, 偏移80207
+第二次授权码30替换最后组, 偏移114320
+
+第一步：
+在cmd里填：
+
+mrpbuilder.exe 123077083
+
+回车，这时会出现 
+c52410f91ef04f91d68a311aa698bd
+Authorization String: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx (xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 一个长度为32的字符串)
+1abc9984135d08296cb7b4d75a321fe7
+bebd1da758af8d0e24ae0d0ef29f3b71
+(如果只出现 Authorization String:，没有后面的32位字符串，那说明你没有一个可用的网络连接。。。
+如果只出现 Authorization failure! 没有Authorization String:字符，那么直接跳到第三步。)
+
+第二步：
+用C32Asm 十六进制模式 打开 mrpbuilder.exe 查找ASCII字符串 8c147513e5bd5b3f1d0c08daa0fba7d2  (长度32)，
+找到后替换为 第一步得到的32位字符串，保存修改。
+
+第三步：
+这时运行修改后的mrpbuilder.exe ,命令格式：
+mrpbuilder.exe --printAuthStrCheckSum
+又得到一个长度为32的字符串。。。取其前30位，
+用C32Asm 十六进制模式 打开 第二步修改后的 mrpbuilder.exe 查找ASCII字符串 d6f502840192a401fdbe0564032254   (长度30)，
+找到后替换为 第三步得到的30位字符串，保存修改。
+破解完毕！
+
+mr文件是mythroad语言的源码文件
+mpr文件是生成mrp的配置文件
+此版本SDK是修改版，可以直接使用不需要安装任何其它软件也不需要破解授权
+提供原始版本以供参考，原始版本的模拟器需要安装VS2005和冒泡开放平台的SDK（也可以使用早期的WIN32冒泡C运行环境）
+API可能和用C语言开发时的API差不多，可以参考C语言开发时使用的API手册
+mythroad语言据说是修改版的LUA语言，因此不妨参考下LUA语言
+
+start.mr源码.txt是别人通过修改后的LUA反编译工具将普通mrp文件中提取出来的start.mr文件反编译出来的结果，由于时间过去太久，修改后的反编译工具和具体过程已经没有人知道了，我只记得那个工具的效果并不好。有兴趣的可以自己去试试。另外早期的mrp是用mythroad语言写的（QQ2008之前的版本就是），就是那种里面没有ext文件的（ext文件是C语言编译后的代码）
+	

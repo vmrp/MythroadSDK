@@ -1,0 +1,111 @@
+version:v1.0u7
+date:2009.12.10
+charge API version:
+charge lib version:
+======================
+** BugFixes:  (Obsolete v1.0u6)
+1. 编译的展讯thumb模式的lib(mr_helperspt.lib)有问题 
+
+
+version:v1.0u6
+date:2009.12.10
+charge API version:
+charge lib version:
+======================
+** BugFixes:  (Obsolete v1.0u5)
+1. v1.0u5中的给CP用的版本缺少一些必要的lib。
+2. 在mrpbuiler中加了一个 --sucp 的选项， 方便内部开发人员将自己的认证角色降低为CP的级别。
+
+
+version:v1.0u5
+date:2009.12.04
+charge API version:
+charge lib version:
+======================
+** BugFixes:  (Obsolete v1.0u4)
+这个版本主要用来修复v1.0u4的两个bug：
+1.   mrc_getMemStatus() 在  ssb没有开启的情况下ssbLeft没有被正确的赋值。
+2.   mrpbuilder里head_append的bug
+
+
+
+version:v1.0u4
+date:2009.12.03
+charge API version:
+charge lib version:
+======================
+** new Features:
+1.  添加了获取内存使用状态的接口:  
+
+	  #include "mrc_base.h"
+		/*
+ 	   *  获取内存使用的状态。[单位 Byte]
+ 	   *     mainUsed -  如果!=NULL, 那么输出为主内存被使用的数量
+ 	   *     mainLeft -  如果 !=NULL, 那么输出为主内存剩余的数量
+ 	   *     ssbUsed  -  如果 !=NULL， 那么输出为ssb使用的数量，未开启的情况下-1
+ 	   *     ssbLeft  -  如果 !=NULL， 那么输出为ssb剩余的数量，未开启的情况下-1
+ 	   *
+ 	   *     sbasmUsed  -  如果 !=NULL， 那么输出为sbasm使用的数量，未开启的情况下-1
+ 	   *     sbasmUsed  -  如果 !=NULL， 那么输出为sbasm剩余的数量，未开启的情况下-1
+ 	   *
+ 	   *  返回值：
+ 	   *      主内存的峰值。
+ 	   */
+ 	   
+		extern int mrc_getMemStatus(int * mainUsed, int * mainLeft, 
+					 int * ssbUsed, int * ssbLeft,  
+					 int * sbasmUsed, int * sbasmLeft);
+
+
+2.  解决了单机游戏在展讯模式下thumb模式死机的问题。
+
+
+version:v1.0u3
+date:2009.12.01
+charge API version:
+charge lib version:
+=======================
+** new Features:
+1.  添加了接口（内部开发使用）： 
+		int32 mrc_getReloadFile(char** mrpname, char** filename);
+
+** BugFixes:
+	N.A.
+
+
+
+
+
+version:v1.0u2
+date:2009.11.23
+charge API version:
+charge lib version:
+=======================
+** new Features:
+1. 在MTK6235上也支持扩展内存。因为目前很多35的机器内存也很小。
+
+** BugFixes:
+	N.A.
+
+
+version: v1.0u1
+date:2009.11.19
+charge API version：
+charge lib version:
+========================
+** New Features:
+
+1. 新增了 loader=cbuf的加载方式， 合适于代码段非常庞大的程序。
+   和loader=c相比的优势在于： 在加载程序代码时， 不需要整个的压缩前的代码段一次性读入到内存。
+   而是使用一个buffer进行渐进式的解压。 这样对内存的峰值要求会降低， 能增强加载的成功率。
+   
+   缺点是mrp包的大小会增强10K左右。 但对游戏运行时的内存没有任何影响。
+   所以，只是在loader=c等方式因为内存问题不能成功加载时才应该使用loader=cbuf的形式。
+   
+   NOTE:   目前仅支持MTK平台。
+   
+
+
+** BugFixes:
+	N.A.
+	

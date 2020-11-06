@@ -1,0 +1,28 @@
+[information]
+projectname=demogame.mpr
+filename=demogame.mrp
+appname=demogame
+appid=300100
+version=100
+visible=1
+cpu=3
+vendor=º¼ÖÝË¹¿­
+
+description=demogame
+include=..\..\..\modules\,.\src\port\
+config=mtk240
+[config_mtk240]
+define=mak_lcd=240X320,mak_ver=114,mak_date=0530
+output=..\bin\gamedemo_sdk_240.mrp
+bmp_mode=normal
+
+[files_mtk240]
+file100 = res\bmp\240\main_menu.bmp
+file101 = res\bmp\240\menu_focus.bmp
+file102 = res\bmp\240\bk.bmp256
+file103 = res\bmp\240\game_bk.bmp
+file104 = res\bmp\240\plane.bmp
+file105 = res\sound\background.mid
+
+[files]
+file1 = .\src\null.c

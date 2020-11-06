@@ -1,0 +1,5 @@
+#ifndef	INCLUDE_GAME_MAIN_H
+#define	INCLUDE_GAME_MAIN_H
+
+
+#endif//INCLUDE_GAME_MAIN_H

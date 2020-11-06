@@ -1,0 +1,6 @@
+---- WritePay Matches (5 in 1 files) ----
+Sendsms.c (d:\sdk_dev\sdk_版本管理_sky\sdk\samples\18.testchargemd5):int32 WritePay(char* recordName);
+Sendsms.c (d:\sdk_dev\sdk_版本管理_sky\sdk\samples\18.testchargemd5):int32 WritePay(char* recordName)
+Sendsms.c (d:\sdk_dev\sdk_版本管理_sky\sdk\samples\18.testchargemd5):			WritePay(RECORD_FILE_NAME);			
+Sendsms.c (d:\sdk_dev\sdk_版本管理_sky\sdk\samples\18.testchargemd5):			WritePay(RECORD_FILE_NAME);			
+Sendsms.c (d:\sdk_dev\sdk_版本管理_sky\sdk\samples\18.testchargemd5):			WritePay(RECORD_FILE_NAME);			
