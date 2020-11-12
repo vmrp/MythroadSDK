@@ -1,0 +1,8 @@
+unpy2exe -p 2.3 mrpbuilder.exe
+uncompyle6 -o . mrpbuilder.py.pyc
+sdk.ext 可以用解压工具解压
+
+应该只有mr.pyd  mr_compilev2.py MRC_ConfigParser.py mrpbuilder.py是有用的，其它都是系统库或者第三方库
+其中mr.pyd依赖了zipdll.dll
+
+注意，mrpbuilder是python2.3写的，如果版本不对可能运行不了

@@ -1,6 +1,0 @@
-unpy2exe -p 2.3 mrpbuilder.exe
-uncompyle6 -o . mrpbuilder.py.pyc
-sdk.ext 可以用解压工具解压
-
-
-
