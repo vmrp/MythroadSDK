@@ -1,4 +1,18 @@
-_clearScr(0,0,0)
-_drawText("hello, world",0,0,255,255,0)
-_dispUp(0,0,240,320)
 
+
+sysinfo = GetSysInfo()
+
+local this_key = _strCom(500, _strCom(501, sysinfo.vmver .. string.sub(sysinfo.IMEI, 3)))
+this_key = this_key .. _strCom(500, _strCom(501, string.sub(sysinfo.IMEI, 2, 7) .. sysinfo.hsman .. string.sub(sysinfo.hstype, 2)))
+this_key = this_key .. _strCom(500, _strCom(501, string.sub(sysinfo.IMEI, 9, 14) .. string.sub(sysinfo.hstype, 1, 3)))
+
+local f = file.open("sdk_key.dat", 4+8)
+if f then
+   f:write(this_key)
+   f:close()
+   _clearScr(0,0,0)
+   _drawText("write sdk_key.dat suc",0,0,255,255,0)
+   _dispUp(0,0,240,320)
+else
+   _error("cann't open sdk_key.dat")
+end

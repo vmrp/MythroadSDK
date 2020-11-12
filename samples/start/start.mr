@@ -69,14 +69,9 @@ end
 */
 
 _clearScr(128,128,0)
-_drawRect(50,50,50,50,  255,255,0)
-EffSetCon(75,75,50,50, 128,128,128)
-_drawText("hello, world",0,0,255,255,0)//貌似只有X,Y,R,G,B参数
-
-DrawText("20201106",50,140,111,222,0)
-_dispUp(0,0,240,320)
-
-_com(400, 3000) // sleep(3000)
+_drawText("hello, world",0,0,255,255,0)
+_dispUp(0,0,sysinfo.scrw,sysinfo.scrh)
+_com(400, 2000) // sleep(ms)
 
 if _mr_c_load() == 0 then
    _strCom(801, {1, sysinfo.vmver}, 6)

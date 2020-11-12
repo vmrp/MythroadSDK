@@ -16,4 +16,4 @@ output=start.mrp
 
 [files]
 file01 = start.mr(name=start.mr)
-file02 = cfunction2(name=cfunction.ext)
+file02 = cfunction(name=cfunction.ext)
