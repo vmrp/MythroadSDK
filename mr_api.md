@@ -122,8 +122,12 @@ _timerStop(0)
 - udp:close()  关闭udp(可以被垃圾回收自动关闭)
 - udp:sendto(data,ip,port,start,end) 发送数据，data为string类型，ip/port/start/end都是number类型，start默认为1，end默认为-1，成功时返回已发送字节数，失败返回nil和错误消息
 - udp:receivefrom(n) 接收数据，参数n可以指定要接收的长度，但是底层限制最大值为1500，成功时返回接收到的数据、对方IP和对方端口，如果未收到数据则返回'',nil,nil，如果失败则返回nil,'错误消息',nil
-- socket.tcp() 创建tcp对象
-
+- socket.tcp() 创建tcp对象，成功返回tcp对象，失败返回nil
+- tcp:connect(ip,port,type) 建立TCP连接，其中type参数值为0时（默认）采用阻塞式连接，设置为1时采用异步连接，成功返回0，失败返回nil，当异步连接时返回2，异步连接需要调用tcp:getstate()来获取最终状态
+- tcp:getstate() 获取异步连接状态，返回值opened:0, connecting:1,connected:2,closed:3,timeout:4,err:5
+- tcp:send(data,start,end) 发送数据，data为string类型，start默认为1，end默认为-1，成功时返回已发送字节数，失败返回nil和错误消息
+- tcp:receive(n) 接收数据，参数n可以指定要接收的长度，但是底层限制最大值为1500，成功时返回接收到的数据，如果未收到数据则返回''，如果失败则返回nil,'错误消息'
+- tcp:close()  关闭tcp(可以被垃圾回收自动关闭)
 ## getHost demo
 ```lua
 local net = _initNet('cmnet')
@@ -230,7 +234,66 @@ def udpTest()
     _closeNet()
 end
 ```
+## TCP demo
+```lua
+local net = _initNet('cmnet')
+local tcp = socket.tcp()
 
+local makeIp = def(a,b,c,d)
+    a = _and(a,0xff) * 16777216 // v << 24
+    b = _and(b,0xff) * 65536    // v << 16
+    c = _and(c,0xff) * 256      // v << 8
+    d = _and(d,0xff)
+    return a + b + c + d
+end
+
+def recvData()
+    // 参数：len,最大1500
+    // 成功返收到的数据,nil 未收到数据返回"",nil 失败返回nil,'err'
+    local data, err = tcp:receive(190) // print() 最大只能打印190个字符
+
+    // if (data != "") && (data != nil) then
+    if data != "" then
+        if data != nil then
+            print('recv:', data)
+            _timerStart(0, 100, 'recvData')
+        end
+    else
+        print('recv err:', err)
+    end
+end
+
+def sendData()
+    local data = 'GET / HTTP/1.1\r\nHost: 192.168.1.1\r\n\r\n'
+    // 参数data,start默认1,end默认-1
+    // 成功返回发送的字节数,nil,nil 失败返回nil,'err',mr_send的返回值
+    local r = tcp:send(data)
+    if r != nil then
+        print('tcp:send(data):', r, string.len(data), data)
+    end
+    recvData()
+end
+
+
+def getstate()
+    // 返回值 opened:0, connecting:1,connected:2,closed:3,timeout:4,err:5
+    local ret = tcp:getstate()
+    print('tcp:getstate():', ret)
+    if ret == 2 then // 连接成功
+        sendData()
+        return
+    end
+    _timerStart(0, 100, 'getstate')
+end
+
+local MR_SOCKET_BLOCK=0    //阻塞方式（同步方式）
+local MR_SOCKET_NONBLOCK=1  //非阻塞方式（异步方式）
+
+local ip = makeIp(192,168,1,1)
+local ret = tcp:connect(ip, 80, MR_SOCKET_NONBLOCK) // 成功返回0，失败返回nil，等待返回2
+print('connect r:', ret)
+getstate()
+```
 
 
 
