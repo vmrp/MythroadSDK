@@ -56,6 +56,7 @@ end)
 底层只有一个定时器，因此第一个参数其实是无效的，但是必需有，传任意值都可以
 
 ```c
+在 src/mythroad.c 中实现
 // 启动一个定时器，1000毫秒，时间到了之后调用全局的timecb函数（注意传的是个字符串，而不是函数指针）
 _timerStart(0, 1000, "timecb")
 
@@ -103,13 +104,91 @@ _timerStop(0)
 - _execFile() 功能应该与原lua中的 dofile() 相同
 - _loadBuf() 功能应该与原lua中的 loadstring() 相同
 
+在 src/mythroad.c 中实现
+- _loadPack(packname)
+- _runFile(filename, runfilename, runfileparameter?) 启动一个mrp，如果传递了runfileparameter字符串，则可以在被启动的mrp中通过全局变量_mr_param获取这个字符串，如果不传，则_mr_param为''。使用方法：_runFile("test.mrp", "start.mr")。如果想在被启动的mrp退出后回到原来的mrp，则需要：
+```
+local info = sys.getInfo() // 为了获取当前mrp的文件名
+// 其中第三个参数如果不传默认为'start.mr'
+_strCom(3, info.packname, 'start.mr') 
+```
+
+- _rand(n) 获取随机数[0,n)，建议执行一次 _plat(1211, n) 设置随机数种子
+- _mod(n,m) 取模运算 n%m
+- _and(n,m) 位与 n&m
+- _or(n,m) 位或 n|m
+- _not(n) 位取反 !n
+- _xor(n,m) 异或 n^m
+- _drawText(str, x, y, r, g, b, is_unicode, font)
+- _drawTextEx(str, x, y, rectx, recty, rectw, recth, r, g, b, flag, font)
+- _drawRect(x,y,w,h,r,g,b)
+- _drawLine(x1,y1,x2,y2,r,g,b)
+- _drawPoint(x,y,r,g,b)
+- _clearScr(r,g,b)
+- _dispUpEx(x,y,w,h)
+- _dispUp(x,y,w,h,i)  参数i是指图片号，默认30指向屏幕缓冲区
+- _textWidth(str|num, is_unicode, font)  第一个参数可以是字符串也可以是数值，当是数值时表示的是一个字符
+- _bmpLoad(i, filename, x, y, w, h, max_w)  加载图片到指定的缓冲号，i表示缓冲号，取值[0-30]，但是30被用来表示屏幕缓冲，注意需要先执行_com(3629, 2913)开启图片加载功能，通过_bmpLoad(i, '*')来删除一张图片
+- _bmpShow(i, x, y, rop, sx, sy, w, h)  显示指定缓冲号的图片
+- _bmpShowEx(p, x, y, mw, w, h, rop, sx, sy) 显示p指向的内存中的图片
+- _bmpNew(i, w, h) 创建一个图片缓冲区
+- _bmpDraw(di, dx, dy, si, sx, xy, w, h, A, B, C, D, rop)
+- _bmpGetScr(i) 复制一份屏幕内容到指定的缓冲号
+- _bmpInfo(i) 获取指定缓冲号的信息，返回 图片指针,缓冲区长度,w,h,type 其中type值应该是内部使用的，只在表示屏幕缓冲时效，0为第一屏幕缓冲，1为第二屏幕缓冲
+- _exit() 退出程序
+- _effSetCon(x, y, w, h, perR, perG, perB) 可以用来做遮罩效果，例如_effSetCon(0,0,100,100, 128,128,128)
+- _com(input0, input1) input0和input1都是数值的扩展功能，调用的是内部的_mr_TestCom()
+    - _com(400, time) 调用mr_sleep(time)
+- _strCom(input0, input1) input0是数值，input1是字符串的扩展功能，调用的是内部的_mr_TestCom1()
+- _plat(code, param) code和param都是数值的扩展功能，调用的是内部的mr_plat()
+    - _plat(1211, n) 以运行时间设置随机数种子后获取 [0,n) 的随机值
+- _platEx(code, input) code是数值，input是字符串的扩展功能，调用的是内部的mr_platEx()，返回一个字符串和数值，字符串由mr_platEx()的output产生，数值则是mr_platEx()的返回值
 - _initNet() 初始化网络功能，详见网络通信一节
 - _closeNet() 关闭网络功能，详见网络通信一节
+
+# 本地UI
+在 src/src/lib/mr_iolib_target.c 中实现
+
+- gui.d_create(title, text, type) 创建对话框
+- gui.d_release(dialog)
+- gui.d_update(dialog, title, text, type)
+- gui.t_create(title, text, type) 创建文本框
+- gui.t_release(dialog)
+- gui.t_update(dialog, title, text)
+- gui.e_create(title, text, type, max_size) 创建编辑框
+- gui.e_release(dialog)
+- gui.e_getText(dialog)
+
+# 文件IO
+在 src/src/lib/mr_iolib_target.c 中实现
+
+- file.open(filename, mode) 成功返回文件对象，失败返回nil和错误信息
+- file.readAll(filename)
+- f:read(n) 
+- f:seek(op, offset)
+- f:write(data)
+- f:close()
+
+# 系统库
+在 src/src/lib/mr_iolib_target.c 中实现
+
+- sys.getUptime() 返回运行的时间，单位毫秒
+- sys.rm(filename)
+- sys.mkDir(name)
+- sys.rmDir(name)
+- sys.getFileInfo(filename)
+- sys.getFileLen(filename)
+- sys.findStart(dir) 返回的第一个值与mrc_findStart()相同，第二个值为第一个文件名目录名
+- sys.findNext(h) 搜索下一个，成功返回文件名或目录名，失败返回nil
+- sys.findStop(h)
+- sys.getInfo() 获取系统信息，返回一个table，其中包含了屏幕大小、IMEI等信息
+- sys.datetime() 获取系统时间，返回一个table，其中包含了年月日时分秒
+- sys.rename(fromName, toName) 文件更名，注意这个是受兼容性控制的api，不确定在真机上是否有这个API
 
 
 
 # 网络通信
-在 src/src/lib/mr_socket_target.c 中实现
+在 src/src/lib/mr_socket_target.c 和 src/src/lib/mr_tcp_target.c 中实现
 
 所有网络功能都需要在调用 _initNet() 之后才能使用
 
