@@ -1,12 +1,13 @@
 # MythroadSDK
 老硬盘里翻出来的代码，斯凯mrp手机软件的早期研究（最早的mr格式所说是lua的变种Mythroad语言）
 
-最早的mrp并不是用c语言开发的，例如QQ2005，遗憾的是这些古老的mrp软件已经完全消失找不到了
+最早的mrp并不是用c语言开发的，例如QQ2005，遗憾的是这些古老的mrp软件很多已经完全消失找不到了
 
-斯凯mr使用的是lua 5.0，因此语法也是5.0的
+斯凯mr使用的是lua 5.0.2，因此语法也是5.0的
 
 http://www.lua.org/manual/5.0/
 
+经过研究，实际上用lua写mrp只需要mrpbuilder.NET.exe这一个文件就够了，这个文件就能够把lua编译成mr文件，其它的都是以前研究时留下的
 ## 语法差异
 ```lua
 /* 注释改成了c语言的注释风格 */
@@ -190,6 +191,35 @@ _strCom(3, info.packname, 'start.mr')
 - sys.datetime() 获取系统时间，返回一个table，其中包含了年月日时分秒
 - sys.rename(fromName, toName) 文件更名，注意这个是受兼容性控制的api，不确定在真机上是否有这个API
 
+# 字符串库
+在 src/lib/mr_strlib.c 中实现
+
+- string.len(s:string):number 获取lua字符串长度，字符串内的0字节也计入（与lua原版相同）
+- string.clen(s:string):number 使用c语言的strlen()统计字符串长度
+- string.wlen(s:string):number 使用c语言的wstrlen()统计字符串长度
+- string.cstr(s:string):string 转换为c语言strlen()长度字符串
+- string.wstr(s:string):string 转换为c语言wstrlen()长度字符串
+- string.sub(s:string, i:number[, j:number]):string 返回字符串从i到j的部分，i和j可以是负数，如果未传递j，则假设j为-1(字符串长度)，例如string.sub(s,1,j)返回长度为j的前辍，而string.sub(s,-i)返回长度为i的s后辍（与lua原版相同）
+- string.lower(s:string):string 转换英文字符为小写
+- string.upper(s:string):string 转换英文字符为大写
+- string.char(i1:number, i2:number, ...):string 接收0个或多个整数，返回一个长度等于参数数量的字条串
+- string.rep(s:string, n:number):string 返回字符串s的n个副本的串联
+- string.byte(s:string[, i:number]):number 返回s的第i个字符的内部数字代码，如果索引超出范围，则返回 nil。如果i不存在，则假定为1。i可为负数。
+- string.format(formatstring:string, e1:any, e2:any, ...):string 格式化字符串，类似c语言的printf()，
+- string.dump(fn:function):buffer 应该与原lua相同
+- string.find (s, pattern [, init [, plain]]) 应该与原lua相同
+- string.findEx() 可能是原lua的string.gfind()
+- string.subEx() 可有是原lua的string.gsub()
+- string.subV(s:string)(addr:number,len:number) 返回lua字符串的内存地址和长度（字符串内的0字节也计入）
+- string.c2u(s:string):string gb编码转换为unicode编码
+- string.u2c(s:string):string 可能是unicode编码转换为gb编码，但是源码中并没有看到使用码表来转换，只有一段很简单的程序，可能只支持部分编码转换
+- string.pack() 功能暂不明确，可能是根据某种字符串的模板格式将数据组装成指定的格式
+- string.unpack() 功能暂不明确，可能与string.pack()有关
+- string.packLen() 功能暂不明确，可能与string.pack()有关
+- string.update(s1,s2,offset,start[,end]):void 将s2替换s1字符串的指定位置（此函数直接影响s1的内容，没有返回值）
+- string.pupdate(p1,p1_len,p2,p2_len,offset,start[,end]) 与string.update相同，只是传递的是字符串指针值
+- string.new(len:number):string 从源码上看像是申请一块内存
+- string.set(s:string, offset:number, value:number):void 将指定的值(uint8)写入到字符串的指定位置
 
 
 # 网络通信
