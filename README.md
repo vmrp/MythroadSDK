@@ -207,7 +207,7 @@ _strCom(3, info.packname, 'start.mr')
 - string.byte(s:string[, i:number]):number 返回s的第i个字符的内部数字代码，如果索引超出范围，则返回 nil。如果i不存在，则假定为1。i可为负数。
 - string.format(formatstring:string, e1:any, e2:any, ...):string 格式化字符串，类似c语言的printf()，
 - string.dump(fn:function):buffer 应该与原lua相同
-- string.find (s, pattern [, init [, plain]]) 应该与原lua相同
+- string.find (s, pattern [, init [, plain]]) 与原lua相同，但是最后一个参数plain与原lua是相反的，也就是说它默认是关闭模式匹配的
 - string.findEx() 可能是原lua的string.gfind()
 - string.subEx() 可有是原lua的string.gsub()
 - string.subV(s:string)(addr:number,len:number) 返回lua字符串的内存地址和长度（字符串内的0字节也计入）
